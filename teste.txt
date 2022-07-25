@@ -1,8 +1,7 @@
 - Pra enviar um repositório, ele precisa ter pelo menos 1 arquivo.
 
 git status
-    Verifica se a pasta está como repositório git e possíveis erros
-
+    Verifica alterações e erros
 
 git init
     Inicia um reposítorio na pasta pro git
@@ -25,3 +24,17 @@ git remote add origin https://github.com/USUARIO/NOMEDOREPOSITORIO.git
 
 git push -u origin main
     Envio definitivo para o github
+
+
+RESUMO:
+    git init - inicia o git em uma pasta
+    git add . - seleciona arquivos para preparo de envios pro git (intermediador)
+    git commit -m "alteração" - envia pro git (intermediador)
+    git branch -M main - Define o que foi enviado como raíz do repositório
+    git remote add origin https://github.com/USUARIO/NOMEDOREPOSITORIO.git - Sync com o github
+    git push -u origin main - Envio definitivo do git (intermediador) pro repositório do github (destinatário)
+
+Envio:
+    CÓDIGO NO PC > GIT (INTERMEDIADOR) > GITHUB
+
+    
