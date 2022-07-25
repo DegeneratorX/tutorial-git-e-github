@@ -9,11 +9,11 @@ git init
 
 git add <nome do arquivo incluindo formato>
 git add .
-    Adiciona o arquivo escolhido pro git
-    Adiciona TODOS os arquivos da pasta pro git usando '.'.
+    Prepara o arquivo escolhido pro git (seleção individual)
+    Prepara TODOS os arquivos da pasta pro git usando '.'. (seleção múltipla)
 
 git commit -m "first commit"
-    Envia os arquivos adicionados ao git para o repositório. -m é uma flag de mensagem.
+    Envia os arquivos adicionados ou modificados para o repositório do git. -m é uma flag de mensagem.
 
 git branch -M main
 git branch -M master
