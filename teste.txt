@@ -12,8 +12,8 @@ git add .
     Prepara o arquivo escolhido pro git (seleção individual)
     Prepara TODOS os arquivos da pasta pro git usando '.'. (seleção múltipla)
 
-git commit -m "first commit"
-    Envia os arquivos adicionados ou modificados para o repositório do git. -m é uma flag de mensagem.
+git commit (-a) -m "first commit"
+    Envia os arquivos adicionados ou modificados para o repositório do git. -m é uma flag de mensagem. -a envia todos do diretório.
 
 git branch -M main
 git branch -M master
@@ -23,18 +23,52 @@ git remote add origin https://github.com/USUARIO/NOMEDOREPOSITORIO.git
     Linkagem e sincronização do repositório e preparo para envio para o github.
 
 git push -u origin main
+git push
     Envio definitivo para o github
+
+git pull
+    Download de qualquer arquivo alterado no repositório pro sistema
 
 
 RESUMO:
-    git init - inicia o git em uma pasta
-    git add . - seleciona arquivos para preparo de envios pro git (intermediador)
-    git commit -m "alteração" - envia pro git (intermediador)
-    git branch -M main - Define o que foi enviado como raíz do repositório
-    git remote add origin https://github.com/USUARIO/NOMEDOREPOSITORIO.git - Sync com o github
-    git push -u origin main - Envio definitivo do git (intermediador) pro repositório do github (destinatário)
+    OBRIGATÓRIO: git init - inicia o git em uma pasta
+    OBRIGATÓRIO: git add . - seleciona arquivos para preparo de envios pro git (intermediador)
+    OBRIGATÓRIO: git commit -m "alteração" - envia pro git (intermediador)
+    SITUACIONAL: git branch -M main - Define o que foi enviado como raíz do repositório
+    SITUACIONAL: git remote add origin https://github.com/USUARIO/NOMEDOREPOSITORIO.git - Sync com o github
+    OBRIGATÓRIO: git push -u origin main - Envio definitivo do git (intermediador) pro repositório do github (destinatário)
+    OBRIGATÓRIO: git pull - Download de alguma alteração do repositório pra maquina
 
 Envio:
     CÓDIGO NO PC > GIT (INTERMEDIADOR) > GITHUB
 
-    
+
+###########################################################################################################################
+###########################################################################################################################
+###########################################################################################################################
+
+
+git clone https://github.com/USUARIO/NOMEDOREPOSITORIO.git (.)
+    Parecido com pull, mas "baixa" um repositório inteiro (clona) pra máquina.
+    Usado para quando não sabemos a origem do repositório.
+    Muito usado quando se está entrando em um projeto novo.
+    '.' é usado pra clonar pro diretório atual do terminal.
+
+git rm (.)
+    Deleta arquivos e não terá mais atualizações consideradas pelo git
+
+git log
+    É um git status com steroids. Ele mostra as últimas alterações do projeto.
+
+git mv <nome do arquivo> <diretório a ser movido/nome do arquivo>
+    Mover ou mudar o nome de um arquivo, e isso é monitorado pelo git
+    O arquivo "anterior" é excluido. É como se fosse Ctrl+X.
+
+git checkout <diretório do arquivo/nome do arquivo>
+    O arquivo modificado retoma ao estado original (onde está no repositório)
+
+git ignore / arquivo .gitignore
+    Lista todos os arquivos e pastas que devem ser ignorados pelo git.
+
+git reset (--hard)
+    Todas as alterações commitadas e pendentes serão excluídas. A flag --hard origin/main
