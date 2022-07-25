@@ -1,0 +1,27 @@
+- Pra enviar um repositório, ele precisa ter pelo menos 1 arquivo.
+
+git status
+    Verifica se a pasta está como repositório git e possíveis erros
+
+
+git init
+    Inicia um reposítorio na pasta pro git
+
+
+git add <nome do arquivo incluindo formato>
+git add .
+    Adiciona o arquivo escolhido pro git
+    Adiciona TODOS os arquivos da pasta pro git usando '.'.
+
+git commit -m "first commit"
+    Envia os arquivos adicionados ao git para o repositório. -m é uma flag de mensagem.
+
+git branch -M main
+git branch -M master
+    Criação de um branch (ramificação) main/master. É onde o código correto estará depositado.
+
+git remote add origin https://github.com/USUARIO/NOMEDOREPOSITORIO.git
+    Linkagem e sincronização do repositório e preparo para envio para o github.
+
+git push -u origin main
+    Envio definitivo para o github
