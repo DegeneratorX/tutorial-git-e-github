@@ -72,3 +72,12 @@ git ignore / arquivo .gitignore
 
 git reset (--hard)
     Todas as alterações commitadas e pendentes serão excluídas. A flag --hard origin/main
+    
+###########################################################################################################################
+###########################################################################################################################
+###########################################################################################################################
+
+TROUBLESHOOTING
+
+git pull --rebase origin main
+    Se esse erro aparecer após dar qualquer git push: "error: failed to push some refs to [link do repositório]"
