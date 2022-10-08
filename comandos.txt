@@ -81,3 +81,12 @@ TROUBLESHOOTING
 
 git pull --rebase origin main
     Se esse erro aparecer após dar qualquer git push: "error: failed to push some refs to [link do repositório]"
+
+git checkout <branch>
+    Muda a branch pra alguma que você quer. Esemplo: main e beta. Se você está na main e deseja ir pra beta, basta usar 'git checkout beta'
+    
+git merge <branch>
+    Traz alterações de uma branch para a branch que você tá atualmente. Exemplo: main e beta. Se você estiver na main e der um 'git merge beta', tudo que estiver na       beta vai pra main.
+    
+git branch -d <branch>
+    Deleta uma branch a sua escolha.
