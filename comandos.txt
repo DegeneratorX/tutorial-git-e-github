@@ -89,4 +89,7 @@ git merge <branch>
     Traz alterações de uma branch para a branch que você tá atualmente. Exemplo: main e beta. Se você estiver na main e der um 'git merge beta', tudo que estiver na       beta vai pra main.
     
 git branch -d <branch>
-    Deleta uma branch a sua escolha.
+    Deleta uma branch a sua escolha LOCAL.
+
+git push -d origin <branch>
+    Deleta uma brnach a sua escolha REMOTA.
