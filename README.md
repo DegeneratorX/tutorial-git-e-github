@@ -165,3 +165,8 @@ git reset (--hard)
 git pull --rebase origin main
 ```
 - Se esse erro aparecer após dar qualquer git push: **"error: failed to push some refs to [link do repositório]"**
+
+```bash
+git reset --hard
+```
+- Se esse erro aparecer após dar qualquer git pull: **"error: Your local changes to the following files would be overwritten by merge: [arquivos]"**
