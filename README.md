@@ -175,4 +175,4 @@ git reset --hard
 git clean -d -f
 git pull origin main
 ```
-- Se esse erro aparecer após dar qualquer git pull: **The following untracked working tree files would be overwritten by merge: <arquivos>. Please move or remove them before you merge.**
+- Se esse erro aparecer após dar qualquer git pull: **The following untracked working tree files would be overwritten by merge: [arquivos]. Please move or remove them before you merge.**
