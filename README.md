@@ -176,3 +176,8 @@ git clean -d -f
 git pull origin main
 ```
 - Se esse erro aparecer após dar qualquer git pull: **The following untracked working tree files would be overwritten by merge: [arquivos]. Please move or remove them before you merge.**
+
+```bash
+git stash
+```
+- Se esse erro aparecer após dar qualquer git pull: **Your local changes to the following files would be overwritten by merge: [arquivos]. Please commit your changes or stash them before you merge.**
