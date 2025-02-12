@@ -158,6 +158,131 @@ git reset (--hard)
 ```
 - Todas as alterações commitadas e pendentes serão excluídas. A flag --hard origin/main
 
+## Merge
+
+Fazer o merge de uma branch na branch principal de desenvolvimento de forma segura usando o Visual Studio Code envolve alguns passos importantes. Segue o guia completo:
+
+### Passo 1: Abra o projeto no VS Code
+Certifique-se de que o repositório Git do projeto está corretamente configurado no VS Code.
+
+### Passo 2: Garanta que você está na branch principal de desenvolvimento
+1. No terminal do VS Code ou pela interface gráfica:
+   - Abra o terminal.
+   - Confira qual branch você está usando o comando:
+     ```bash
+     git branch
+     ```
+   - Certifique-se de que você está na branch `dev` (ou a branch principal de desenvolvimento). Caso contrário, troque para ela com:
+     ```bash
+     git checkout dev
+     ```
+     
+### Passo 3: Atualize a branch `dev`
+É importante ter certeza de que sua branch principal está atualizada antes de aplicar o merge:
+```bash
+git pull origin dev
+```
+
+### Passo 4: Faça o merge da sua branch na branch `dev`
+Agora, aplique o merge da sua branch de forma segura:
+1. No terminal:
+   ```bash
+   git merge nome-da-sua-branch
+   ```
+   Substitua `nome-da-sua-branch` pelo nome da branch que deseja integrar.
+
+2. Resolva possíveis conflitos:
+   - Caso ocorram conflitos, o VS Code destacará os arquivos com conflitos.
+   - Na interface, você verá opções para escolher **"Aceitar mudança atual"**, **"Aceitar mudança da entrada"** ou até mesmo **"Aceitar ambas"**.
+   - Após resolver os conflitos, salve os arquivos e marque-os como resolvidos com:
+     ```bash
+     git add <arquivo>
+     ```
+   - Finalize o merge com:
+     ```bash
+     git commit
+     ```
+
+### Passo 6: Envie as alterações para o repositório remoto
+Após confirmar que o merge foi bem-sucedido e os testes estão OK, envie as alterações:
+```bash
+git push origin dev
+```
+
+Seguindo esses passos, você garante que o merge será feito de forma segura e rastreável. Se algo der errado, você pode sempre desfazer com:
+```bash
+git merge --abort
+```
+
+## Atualizar listagem de repositórios remotos
+
+Se o VS Code ainda estiver listando branches que já foram deletadas no repositório remoto, às vezes, o Git mantém referências a branches remotos que não existem mais. Para limpar isso, execute:
+
+```sh
+git fetch --prune
+```
+Isso remove referências a branches que foram deletados no repositório remoto.
+
+Se `git fetch --prune` não resolver, pode ser necessário limpar as referências armazenadas:
+```sh
+git remote prune origin
+```
+Ou, para remover referências específicas:
+```sh
+git remote set-url --delete origin nome-da-branch
+```
+
+## Atualizar listagem de repoisitórios locais
+
+Se houver branches locais que foram deletadas manualmente, mas ainda aparecem na lista do VS Code, verifique se ainda há referências a eles:
+```sh
+git branch --list
+```
+Se aparecerem branches que você quer remover, exclua com:
+```sh
+git branch -d nome-da-branch
+```
+Se a branch ainda não tiver sido mesclada e quiser forçar a exclusão, use:
+```sh
+git branch -D nome-da-branch
+```
+
+Se você quiser excluir **todas** as branches locais do repositório (exceto a branch ativa), siga estas opções:
+
+###*1. Excluir todas as branches locais mescladas
+Se você deseja excluir apenas as branches **já mescladas**, use:
+```sh
+git branch --merged | grep -v '\*' | xargs git branch -d
+```
+- `git branch --merged` lista branches já mescladas.
+- `grep -v '\*'` exclui a branch atual da lista.
+- `xargs git branch -d` executa a exclusão.
+
+### 2. Excluir todas as branches locais (mesmo as não mescladas)
+Se quiser excluir **todas as branches locais**, mesmo as não mescladas, use:
+```sh
+git branch | grep -v '\*' | xargs git branch -D
+```
+- Isso **força** a exclusão das branches sem verificação de merge.
+
+### 3. Excluir todas as branches locais, exceto 'main' ou 'master'
+Caso queira manter a `main` ou `master`, use:
+```sh
+git branch | grep -v "main" | grep -v "master" | grep -v '\*' | xargs git branch -D
+```
+Isso protege a `main` e `master`, excluindo todas as outras.
+
+> **Atenção:** Esses comandos são irreversíveis! Se houver algo importante, garanta que está commitado antes de deletar.
+
+Por fim, exista a possibilidade do VS Code manter um cache das branches. Para forçar a atualização:
+
+1. Feche o VS Code.
+2. Execute:
+   ```sh
+   git status
+   ```
+   para garantir que o repositório está atualizado.
+3. Reabra o VS Code e tente abrir a aba **Source Control (CTRL + Shift + G)** para verificar se a lista foi atualizada.
 
 # TROUBLESHOOTING
 
