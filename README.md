@@ -209,10 +209,66 @@ Após confirmar que o merge foi bem-sucedido e os testes estão OK, envie as alt
 git push origin dev
 ```
 
-Seguindo esses passos, você garante que o merge será feito de forma segura e rastreável. Se algo der errado, você pode sempre desfazer com:
+Seguindo esses passos, você garante que o merge será feito de forma segura e rastreável.
+
+Se você já fez o merge e aceitou tudo, mas quer voltar atrás, há algumas opções dependendo do seu estado atual. Aqui estão os cenários e como revertê-los:
+
+### Se você ainda não fez commit do merge
+Se você deu o merge e aceitou os conflitos, mas ainda não fez `git commit`, pode simplesmente abortar o merge com:
+
 ```bash
 git merge --abort
 ```
+Isso volta ao estado antes do merge, como se nada tivesse acontecido.
+
+### Se você já fez commit do merge, mas ainda não fez push
+Caso tenha finalizado o commit, mas ainda **não tenha feito push** para o repositório remoto, use:
+
+```bash
+git reset --hard HEAD~1
+```
+Isso remove o commit do merge e volta sua branch ao estado antes do merge.
+
+> **Cuidado:** Isso descarta todas as alterações do merge.
+
+Se você quer apenas desfazer o merge sem perder as mudanças feitas nos arquivos, use:
+
+```bash
+git reset --soft HEAD~1
+```
+Isso mantém as mudanças feitas pelo merge, mas remove o commit.
+
+### Se você já fez push do merge
+Se o commit do merge já foi enviado para o repositório remoto (`git push`), as opções são:
+
+#### **(a) Criar um novo commit que desfaz o merge (maneira mais segura)**
+A melhor opção nesse caso é criar um commit de reversão:
+```bash
+git revert -m 1 <hash-do-commit>
+```
+Para encontrar o hash do commit do merge, rode:
+```bash
+git log --oneline
+```
+Ele mostrará uma lista de commits, encontre o do merge e copie o hash. Então, use o `git revert`.
+
+Isso criará um commit que desfaz as alterações do merge, mantendo o histórico intacto.
+
+#### **(b) Resetar e forçar o push (opção mais arriscada)**
+Se você quiser realmente apagar o merge da branch remota, pode resetar e forçar o push:
+```bash
+git reset --hard HEAD~1
+git push --force
+```
+>**Cuidado:** Isso reescreve o histórico do Git e pode causar problemas para outras pessoas que já tenham baixado a branch.
+
+### **Qual método escolher?**
+- **Se ainda não fez commit →** `git merge --abort`
+- **Se já fez commit, mas não deu push →** `git reset --hard HEAD~1`
+- **Se já fez push, mas quer reverter sem apagar histórico →** `git revert -m 1 <hash>`
+- **Se já fez push e quer apagar o merge à força (último recurso) →** `git reset --hard HEAD~1 && git push --force`
+
+Se estiver em dúvida, o `git revert` é a opção mais segura, pois mantém o histórico sem problemas para outras pessoas que usam o repositório.
 
 ## Atualizar listagem de repositórios remotos
 
@@ -249,7 +305,7 @@ git branch -D nome-da-branch
 
 Se você quiser excluir **todas** as branches locais do repositório (exceto a branch ativa), siga estas opções:
 
-###*1. Excluir todas as branches locais mescladas
+### 1. Excluir todas as branches locais mescladas
 Se você deseja excluir apenas as branches **já mescladas**, use:
 ```sh
 git branch --merged | grep -v '\*' | xargs git branch -d
